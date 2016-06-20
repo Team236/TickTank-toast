@@ -12,9 +12,11 @@ public class Settings {
     public Joystick leftStick, rightStick;
     public int motorCount;
     public ControllerType controllerType;
+    public boolean leftInv, rightInv;
 
     public Settings() {
-
+        leftInv = false;
+        rightInv = false;
     }
 
     public void setLeftStick(Joystick stick) {
@@ -32,6 +34,14 @@ public class Settings {
 
     public void setCount(int _count) {
         this.motorCount = _count;
+    }
+
+    public void invertLeft() {
+        leftInv = true;
+    }
+
+    public void invertRight() {
+        rightInv = true;
     }
 
     /**

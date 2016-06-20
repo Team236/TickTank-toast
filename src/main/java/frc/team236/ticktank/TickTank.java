@@ -109,12 +109,20 @@ public class TickTank extends Subsystem {
     }
 
     public void setLeftSpeed(double speed) {
+        if (config.leftInv) {
+            speed *= -1;
+        }
+
         for (SpeedController motor : leftMotors) {
             motor.set(speed);
         }
     }
 
     public void setRightSpeed(double speed) {
+        if (config.rightInv) {
+            speed *= -1;
+        }
+
         for (SpeedController motor : rightMotors) {
             motor.set(speed);
         }
