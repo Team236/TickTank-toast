@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.team236.ticktank.commands.DriveWithJoysticks;
 import jaci.openrio.toast.lib.registry.Registrar;
 
 public class TickTank extends Subsystem {
@@ -50,6 +51,7 @@ public class TickTank extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
+        setDefaultCommand(new DriveWithJoysticks(this));
     }
 
     private static Settings getDefaults() {
@@ -79,6 +81,7 @@ public class TickTank extends Subsystem {
             int count,
             int pwmStartPort,
             ControllerType type) {
+
         ArrayList<SpeedController> motors =
             new ArrayList<SpeedController>(count);
 
@@ -135,6 +138,10 @@ public class TickTank extends Subsystem {
     public void setSpeeds(double leftSpeed, double rightSpeed) {
         setLeftSpeed(leftSpeed);
         setRightSpeed(rightSpeed);
+    }
+
+    public void stop() {
+        setSpeeds(0, 0);
     }
 
     public Encoder getLeftEncoder() {
