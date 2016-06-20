@@ -30,8 +30,8 @@ public class TickTank extends Subsystem {
                 pwm+config.motorCount,
                 config.controllerType);
 
-        leftStick = config.leftStick;
-        rightStick = config.rightStick;
+        setLeftStick(config.leftStick);
+        setRightStick(config.rightStick);
     }
 
     /**
@@ -100,11 +100,11 @@ public class TickTank extends Subsystem {
         return motors;
     }
 
-    public void setLeftStick(Joystick stick) {
+    private void setLeftStick(Joystick stick) {
         this.leftStick = stick;
     }
 
-    public void setRightStick(Joystick stick) {
+    private void setRightStick(Joystick stick) {
         this.rightStick = stick;
     }
 
