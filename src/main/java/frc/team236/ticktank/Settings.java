@@ -13,6 +13,8 @@ public class Settings {
     public int motorCount;
     public ControllerType controllerType;
     public boolean leftInv, rightInv;
+    public int leftEncoderA, leftEncoderB;
+    public int rightEncoderA, rightEncoderB;
 
     public Settings() {
         leftInv = false;
@@ -36,12 +38,22 @@ public class Settings {
         this.motorCount = _count;
     }
 
-    public void invertLeft() {
+    public void invertLeftMotors() {
         leftInv = true;
     }
 
-    public void invertRight() {
+    public void invertRightMotors() {
         rightInv = true;
+    }
+
+    public void setLeftEncoderPort(int a, int b) {
+        this.leftEncoderA = a;
+        this.leftEncoderB = b;
+    }
+
+    public void setRightEncoderPort(int a, int b) {
+        this.rightEncoderA = a;
+        this.rightEncoderB = b;
     }
 
     /**

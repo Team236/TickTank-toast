@@ -2,6 +2,7 @@ package frc.team236.ticktank;
 
 import java.util.ArrayList;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -9,7 +10,8 @@ import jaci.openrio.toast.lib.registry.Registrar;
 
 public class TickTank extends Subsystem {
     public Joystick leftStick, rightStick;
-    public ArrayList<SpeedController> leftMotors, rightMotors;
+    private Encoder leftEncoder, rightEncoder;
+    private ArrayList<SpeedController> leftMotors, rightMotors;
     public Settings config;
 
     /**
@@ -32,6 +34,8 @@ public class TickTank extends Subsystem {
 
         setLeftStick(config.leftStick);
         setRightStick(config.rightStick);
+        leftEncoder = new Encoder(config.leftEncoderA, config.leftEncoderB);
+        rightEncoder = new Encoder(config.rightEncoderA, config.rightEncoderB);
     }
 
     /**
@@ -131,5 +135,13 @@ public class TickTank extends Subsystem {
     public void setSpeeds(double leftSpeed, double rightSpeed) {
         setLeftSpeed(leftSpeed);
         setRightSpeed(rightSpeed);
+    }
+
+    public Encoder getLeftEncoder() {
+        return leftEncoder;
+    }
+
+    public Encoder getRightEncoder() {
+        return rightEncoder;
     }
 }
