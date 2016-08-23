@@ -78,6 +78,10 @@ public class TickTank extends Subsystem {
 		for (int port = pwmStartPort; port < pwmStartPort + count; port++) {
 
 			switch (type) {
+			case VICTORSP:
+				motors.add(Registrar.victorSP(port));
+				break;
+
 			case VICTOR:
 				motors.add(Registrar.victor(port));
 				break;
