@@ -8,62 +8,62 @@ import edu.wpi.first.wpilibj.Joystick;
  * objects using the set methods, then pass it on to the Drive module.
  */
 public class Settings {
-    // Poorly named class
-    public Joystick leftStick, rightStick;
-    public int motorCount;
-    public ControllerType controllerType;
-    public boolean leftInv, rightInv;
-    public int leftEncoderA, leftEncoderB;
-    public int rightEncoderA, rightEncoderB;
+	// Poorly named class
+	public Joystick leftStick, rightStick;
+	public int motorCount;
+	public ControllerType controllerType;
+	public boolean leftInv, rightInv;
+	public int leftEncoderA, leftEncoderB;
+	public int rightEncoderA, rightEncoderB;
 
-    public Settings() {
-        leftInv = false;
-        rightInv = false;
-    }
+	public Settings() {
+		leftInv = false;
+		rightInv = false;
+	}
 
-    public void setLeftStick(Joystick stick) {
-        this.leftStick = stick;
-    }
+	public void setLeftStick(Joystick stick) {
+		this.leftStick = stick;
+	}
 
-    public void setRightStick(Joystick stick) {
-        this.rightStick = stick;
-    }
+	public void setRightStick(Joystick stick) {
+		this.rightStick = stick;
+	}
 
-    public void setSticks(Joystick left, Joystick right) {
-        this.setLeftStick(left);
-        this.setRightStick(right);
-    }
+	public void setSticks(Joystick left, Joystick right) {
+		this.setLeftStick(left);
+		this.setRightStick(right);
+	}
 
-    public void setCount(int _count) {
-        this.motorCount = _count;
-    }
+	public void setCount(int _count) {
+		this.motorCount = _count;
+	}
 
-    public void invertLeftMotors() {
-        leftInv = true;
-    }
+	public void invertLeftMotors() {
+		leftInv = true;
+	}
 
-    public void invertRightMotors() {
-        rightInv = true;
-    }
+	public void invertRightMotors() {
+		rightInv = true;
+	}
 
-    public void setLeftEncoderPort(int a, int b) {
-        this.leftEncoderA = a;
-        this.leftEncoderB = b;
-    }
+	public void setLeftEncoderPort(int a, int b) {
+		this.leftEncoderA = a;
+		this.leftEncoderB = b;
+	}
 
-    public void setRightEncoderPort(int a, int b) {
-        this.rightEncoderA = a;
-        this.rightEncoderB = b;
-    }
+	public void setRightEncoderPort(int a, int b) {
+		this.rightEncoderA = a;
+		this.rightEncoderB = b;
+	}
 
-    /**
-     * Set the type of SpeedController being used by providing an example
-     * SpeedController.
-     *
-     * @param example
-     *            An instance of a SpeedController of the type to be used
-     */
-    public void setControllerType(ControllerType type) {
-        this.controllerType = type;
-    }
+	/**
+	 * Set the type of SpeedController being used by providing an example
+	 * SpeedController.
+	 *
+	 * @param example
+	 *            An instance of a SpeedController of the type to be used
+	 */
+	public void setControllerType(ControllerType type) {
+		this.controllerType = type;
+	}
 }
