@@ -31,8 +31,11 @@ public class TickTank extends Subsystem {
 
 		setLeftStick(config.leftStick);
 		setRightStick(config.rightStick);
-		leftEncoder = new Encoder(config.leftEncoderA, config.leftEncoderB);
-		rightEncoder = new Encoder(config.rightEncoderA, config.rightEncoderB);
+
+		if (config.hasEncoders) {
+			leftEncoder = new Encoder(config.leftEncoderA, config.leftEncoderB);
+			rightEncoder = new Encoder(config.rightEncoderA, config.rightEncoderB);
+		}
 	}
 
 	/**
