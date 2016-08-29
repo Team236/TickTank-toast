@@ -1,6 +1,6 @@
 package frc.team236.ticktank.motionProfile;
 
-import frc.team236.ticktock.Updatable;
+import frc.team236.ticktock.Tickable;
 
 /**
  * 
@@ -8,7 +8,7 @@ import frc.team236.ticktock.Updatable;
  *
  */
 
-public class ProfileFollower implements Updatable {
+public class ProfileFollower implements Tickable {
 	// Profile to be followed
 	Profile profile;
 	// Step of profile
@@ -67,25 +67,5 @@ public class ProfileFollower implements Updatable {
 		}
 		// Increment our loop counter
 		i++;
-	}
-
-	@Override
-	public void enable() {
-		this.isEnabled = true;
-	}
-
-	@Override
-	public void disable() {
-		this.isEnabled = false;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return isEnabled;
-	}
-
-	@Override
-	public String toString() {
-		return "Motion Profile Follower";
 	}
 }
