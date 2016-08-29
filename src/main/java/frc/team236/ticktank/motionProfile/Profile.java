@@ -12,6 +12,15 @@ import java.util.ArrayList;
  */
 public class Profile {
 
+	private enum Stage {
+		// There are seven stages in a motion profile
+		ACCEL_RAMP_UP, // Acceleration gradually increases
+		CONST_ACCEL, // Constant accel, speed gradually increases
+		ACCEL_MIRROR, // We mirror the previous half of maxAccel
+		CONST_SPEED, // Constant speed, main travel portion
+		MIRROR, // Mirror the profile around the midpoint
+	}
+
 	private ArrayList<Element> list = new ArrayList<Element>();
 	public ProfileParameters constants;
 
@@ -31,13 +40,7 @@ public class Profile {
 	private static final double maxTime = 30;
 
 	public Profile(ProfileParameters params) {
-		// There are seven stages in a motion profile
-		int ACCEL_RAMP_UP = 1; // Acceleration gradually increases
-		int CONST_ACCEL = 2; // Constant accel, speed gradually increases
-		int ACCEL_MIRROR = 3; // We mirror the previous half of maxAccel
-		int CONST_SPEED = 4; // Constant speed, main travel portion
-		int MIRROR = 5; // Mirror the profile around the midpoint
-		int stage = ACCEL_RAMP_UP;
+		Stage stage = Stage.ACCEL_RAMP_UP;
 
 		double midpoint = params.distance / 2;
 		double velocityMidpoint = params.maxVelocity / 2;
@@ -56,23 +59,23 @@ public class Profile {
 
 			// Determine where we are within the profile
 			if (prevElement.acceleration < params.maxAccel) {
-				stage = ACCEL_RAMP_UP;
+				stage = Stage.ACCEL_RAMP_UP;
 			}
 			if (prevElement.acceleration == params.maxAccel) {
-				stage = CONST_ACCEL;
+				stage = Stage.CONST_ACCEL;
 			}
 			if (prevElement.speed >= velocityMidpoint) {
-				stage = ACCEL_MIRROR;
+				stage = Stage.ACCEL_MIRROR;
 				if (!jSet) {
 					j = length() - 1;
 					jSet = true;
 				}
 			}
 			if (jSet && j <= 0) {
-				stage = CONST_SPEED;
+				stage = Stage.CONST_SPEED;
 			}
 			if (prevElement.position >= midpoint) {
-				stage = MIRROR;
+				stage = Stage.MIRROR;
 				atMidpoint = true;
 				if (!kSet) {
 					k = length() - 1;
@@ -83,19 +86,19 @@ public class Profile {
 			Element e = new Element(); // Generate the new element
 
 			// Give values to the new element
-			if (stage == ACCEL_RAMP_UP) {
+			if (stage == Stage.ACCEL_RAMP_UP) {
 				e.jerk = params.maxJerk;
 				e.acceleration = prevElement.acceleration + (params.maxJerk * dt);
 				e.speed = prevElement.speed + (e.acceleration * dt);
 				e.position = prevElement.position + (e.speed * dt);
 			}
-			if (stage == CONST_ACCEL) {
+			if (stage == Stage.CONST_ACCEL) {
 				e.jerk = 0;
 				e.acceleration = params.maxAccel;
 				e.speed = prevElement.speed + (e.acceleration * dt);
 				e.position = prevElement.position + (e.speed * dt);
 			}
-			if (stage == ACCEL_MIRROR) {
+			if (stage == Stage.ACCEL_MIRROR) {
 				// This will probably break
 				e.jerk = -get(j).jerk;
 				e.acceleration = get(i).acceleration + e.jerk * dt;
@@ -104,13 +107,13 @@ public class Profile {
 				// decrement mirror counter
 				j--;
 			}
-			if (stage == CONST_SPEED) {
+			if (stage == Stage.CONST_SPEED) {
 				e.jerk = 0;
 				e.acceleration = 0;
 				e.speed = params.maxVelocity;
 				e.position = prevElement.position + (e.speed * dt);
 			}
-			if (stage == MIRROR) {
+			if (stage == Stage.MIRROR) {
 				if (k < 0) {
 					break;
 				}
