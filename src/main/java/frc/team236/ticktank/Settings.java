@@ -57,11 +57,10 @@ public class Settings {
 	}
 
 	/**
-	 * Set the type of SpeedController being used by providing an example
-	 * SpeedController.
+	 * Set the type of SpeedController being used
 	 *
-	 * @param example
-	 *            An instance of a SpeedController of the type to be used
+	 * @param type
+	 *            The ControllerType of the drive motors
 	 */
 	public void setControllerType(ControllerType type) {
 		this.controllerType = type;
