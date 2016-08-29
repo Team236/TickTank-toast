@@ -15,6 +15,7 @@ public class Settings {
 	public boolean leftInv, rightInv;
 	public int leftEncoderA, leftEncoderB;
 	public int rightEncoderA, rightEncoderB;
+	public boolean hasGyro;
 
 	public Settings() {
 		leftInv = false;
@@ -54,6 +55,10 @@ public class Settings {
 	public void setRightEncoderPort(int a, int b) {
 		this.rightEncoderA = a;
 		this.rightEncoderB = b;
+	}
+
+	public void addGyro() {
+		this.hasGyro = true;
 	}
 
 	/**

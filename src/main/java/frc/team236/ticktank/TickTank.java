@@ -2,8 +2,11 @@ package frc.team236.ticktank;
 
 import java.util.ArrayList;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team236.ticktank.commands.DriveWithJoysticks;
@@ -16,6 +19,7 @@ public class TickTank extends Subsystem {
 	private ArrayList<SpeedController> leftMotors, rightMotors;
 	public DriveSide left, right;
 	public Settings config;
+	public static AHRS navx;
 
 	/**
 	 * Generates a TickTank using the specified Settings object.
@@ -35,6 +39,10 @@ public class TickTank extends Subsystem {
 
 		leftEncoder = new Encoder(config.leftEncoderA, config.leftEncoderB);
 		rightEncoder = new Encoder(config.rightEncoderA, config.rightEncoderB);
+
+		if (config.hasGyro) {
+			navx = new AHRS(SPI.Port.kMXP);
+		}
 
 		left = new DriveSide(leftMotors, leftEncoder);
 		right = new DriveSide(rightMotors, rightEncoder);
