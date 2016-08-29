@@ -7,12 +7,14 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team236.ticktank.commands.DriveWithJoysticks;
+import frc.team236.ticktank.motionProfile.DriveSide;
 import jaci.openrio.toast.lib.registry.Registrar;
 
 public class TickTank extends Subsystem {
 	public Joystick leftStick, rightStick;
 	private Encoder leftEncoder, rightEncoder;
 	private ArrayList<SpeedController> leftMotors, rightMotors;
+	public DriveSide left, right;
 	public Settings config;
 
 	/**
@@ -26,16 +28,16 @@ public class TickTank extends Subsystem {
 		int pwm = 0; // TODO Allow user to define available pwm ports
 
 		leftMotors = makeMotors(config.motorCount, pwm, config.controllerType);
-
 		rightMotors = makeMotors(config.motorCount, pwm + config.motorCount, config.controllerType);
 
 		setLeftStick(config.leftStick);
 		setRightStick(config.rightStick);
 
-		if (config.hasEncoders) {
-			leftEncoder = new Encoder(config.leftEncoderA, config.leftEncoderB);
-			rightEncoder = new Encoder(config.rightEncoderA, config.rightEncoderB);
-		}
+		leftEncoder = new Encoder(config.leftEncoderA, config.leftEncoderB);
+		rightEncoder = new Encoder(config.rightEncoderA, config.rightEncoderB);
+
+		left = new DriveSide(leftMotors, leftEncoder);
+		right = new DriveSide(rightMotors, rightEncoder);
 	}
 
 	/**

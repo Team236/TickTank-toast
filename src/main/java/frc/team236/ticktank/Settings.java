@@ -16,8 +16,6 @@ public class Settings {
 	public int leftEncoderA, leftEncoderB;
 	public int rightEncoderA, rightEncoderB;
 
-	public boolean hasEncoders = false;
-
 	public Settings() {
 		leftInv = false;
 		rightInv = false;
@@ -49,13 +47,11 @@ public class Settings {
 	}
 
 	public void setLeftEncoderPort(int a, int b) {
-		this.hasEncoders = true;
 		this.leftEncoderA = a;
 		this.leftEncoderB = b;
 	}
 
 	public void setRightEncoderPort(int a, int b) {
-		this.hasEncoders = true;
 		this.rightEncoderA = a;
 		this.rightEncoderB = b;
 	}
