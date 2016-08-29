@@ -31,18 +31,18 @@ public class RawTurn extends Command {
 
 	@Override
 	protected void initialize() {
-		if (TickTank.navx == null) {
+		if (tank.navx == null) {
 			RobotModule.logger.severe("No gyro in use");
 			end();
 		}
-		startHeading = TickTank.navx.getAngle();
+		startHeading = tank.navx.getAngle();
 		goalHeading = startHeading + turnDegrees;
 		error = turnDegrees;
 	}
 
 	@Override
 	protected void execute() {
-		heading = TickTank.navx.getAngle();
+		heading = tank.navx.getAngle();
 		error = goalHeading - heading;
 
 		if (direction == Direction.LEFT || direction == Direction.CCW) {
@@ -68,5 +68,4 @@ public class RawTurn extends Command {
 	protected void interrupted() {
 		end();
 	}
-
 }

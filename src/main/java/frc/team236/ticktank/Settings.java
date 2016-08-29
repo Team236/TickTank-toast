@@ -1,6 +1,7 @@
 package frc.team236.ticktank;
 
 import edu.wpi.first.wpilibj.Joystick;
+import frc.team236.pid.PIDParameters;
 
 /**
  * Contains all of the configuration variables for the tank drive. You should
@@ -16,6 +17,8 @@ public class Settings {
 	public int leftEncoderA, leftEncoderB;
 	public int rightEncoderA, rightEncoderB;
 	public boolean hasGyro;
+
+	public PIDParameters turnParams;
 
 	public Settings() {
 		leftInv = false;
@@ -69,5 +72,9 @@ public class Settings {
 	 */
 	public void setControllerType(ControllerType type) {
 		this.controllerType = type;
+	}
+
+	public void setTurnPID(PIDParameters _params) {
+		this.turnParams = _params;
 	}
 }

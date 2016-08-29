@@ -9,17 +9,21 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.team236.pid.PIDOutput;
+import frc.team236.pid.PIDParameters;
+import frc.team236.pid.PIDSource;
 import frc.team236.ticktank.commands.DriveWithJoysticks;
 import frc.team236.ticktank.motionProfile.DriveSide;
 import jaci.openrio.toast.lib.registry.Registrar;
 
-public class TickTank extends Subsystem {
+public class TickTank extends Subsystem implements PIDSource, PIDOutput {
 	public Joystick leftStick, rightStick;
 	private Encoder leftEncoder, rightEncoder;
 	private ArrayList<SpeedController> leftMotors, rightMotors;
 	public DriveSide left, right;
 	public Settings config;
-	public static AHRS navx;
+	public AHRS navx;
+	public PIDParameters turnParams;
 
 	/**
 	 * Generates a TickTank using the specified Settings object.
@@ -46,6 +50,8 @@ public class TickTank extends Subsystem {
 
 		left = new DriveSide(leftMotors, leftEncoder);
 		right = new DriveSide(rightMotors, rightEncoder);
+
+		this.turnParams = config.turnParams;
 	}
 
 	/**
@@ -155,5 +161,15 @@ public class TickTank extends Subsystem {
 
 	public Encoder getRightEncoder() {
 		return rightEncoder;
+	}
+
+	@Override
+	public void setSpeed(double speed) {
+		this.setSpeeds(speed, -speed);
+	}
+
+	@Override
+	public double getPos() {
+		return navx.getAngle();
 	}
 }
