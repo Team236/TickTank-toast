@@ -57,10 +57,9 @@ public class FollowProfile extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO
-		/*
-		 * if (leftFollower.error < .1 && rightFollower.error < .1) { return
-		 * true; }
-		 */
+		if (leftFollower.error < .1 && rightFollower.error < .1) {
+			return true;
+		}
 		return false;
 	}
 
