@@ -26,7 +26,7 @@ public class ProfileFollower implements Tickable {
 
 	boolean isInverted;
 
-	public ProfileFollower(Profile p, ProfileSource source, ProfileOutput output, FollowParameters params,
+	public ProfileFollower(Profile p, ProfileSource source, ProfileOutput output, DriveParameters params,
 			boolean _isInverted) {
 		this.profile = p;
 		this.source = source;

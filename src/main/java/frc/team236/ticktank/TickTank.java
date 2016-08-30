@@ -13,6 +13,7 @@ import frc.team236.pid.PIDOutput;
 import frc.team236.pid.PIDParameters;
 import frc.team236.pid.PIDSource;
 import frc.team236.ticktank.commands.DriveWithJoysticks;
+import frc.team236.ticktank.motionProfile.DriveParameters;
 import jaci.openrio.toast.lib.registry.Registrar;
 
 public class TickTank extends Subsystem implements PIDSource, PIDOutput {
@@ -23,6 +24,8 @@ public class TickTank extends Subsystem implements PIDSource, PIDOutput {
 	public Settings config;
 	public AHRS navx;
 	public PIDParameters turnParams;
+
+	public DriveParameters driveParams;
 
 	/**
 	 * Generates a TickTank using the specified Settings object.
@@ -57,6 +60,7 @@ public class TickTank extends Subsystem implements PIDSource, PIDOutput {
 		right = new DriveSide(rightMotors, rightEncoder);
 
 		this.turnParams = config.turnParams;
+		this.driveParams = config.params;
 	}
 
 	/**

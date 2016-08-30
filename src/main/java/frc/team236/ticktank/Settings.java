@@ -2,6 +2,7 @@ package frc.team236.ticktank;
 
 import edu.wpi.first.wpilibj.Joystick;
 import frc.team236.pid.PIDParameters;
+import frc.team236.ticktank.motionProfile.DriveParameters;
 
 /**
  * Contains all of the configuration variables for the tank drive. You should
@@ -19,6 +20,7 @@ public class Settings {
 	public int rightEncoderA, rightEncoderB;
 	public boolean hasGyro;
 	public double dpp;
+	public DriveParameters params;
 
 	public PIDParameters turnParams;
 
@@ -75,6 +77,10 @@ public class Settings {
 
 	public void setDistancePerPulse(double _dpp) {
 		this.dpp = _dpp;
+	}
+
+	public void setDriveParams(DriveParameters _d) {
+		this.params = _d;
 	}
 
 	public void addGyro() {
