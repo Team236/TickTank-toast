@@ -2,6 +2,7 @@ package frc.team236.ticktank.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team236.ticktank.DriveSide;
+import frc.team236.ticktank.RobotModule;
 import frc.team236.ticktank.TickTank;
 import frc.team236.ticktank.motionProfile.Profile;
 import frc.team236.ticktank.motionProfile.ProfileFollower;
@@ -35,7 +36,7 @@ public class FollowProfile extends Command {
 		this.isInverted = _isInverted;
 
 		if (leftProfile == null || rightProfile == null) {
-			System.out.println("Null profile(s)");
+			RobotModule.logger.severe("Null Profile");
 		} else {
 			leftFollower = new ProfileFollower(leftProfile, leftSide, leftSide, tank.driveParams, isInverted);
 			rightFollower = new ProfileFollower(rightProfile, rightSide, rightSide, tank.driveParams, isInverted);
@@ -45,6 +46,7 @@ public class FollowProfile extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+		RobotModule.logger.info("Starting FollowProfile Command");
 		tank.zeroEncoders();
 	}
 
@@ -69,6 +71,7 @@ public class FollowProfile extends Command {
 		leftFollower.isEnabled = false;
 		rightFollower.isEnabled = false;
 		tank.stop();
+		RobotModule.logger.info("Ending FollowProfile Command");
 	}
 
 	// Called when another command which requires one or more of the same
