@@ -6,6 +6,7 @@ import frc.team236.ticktank.RobotModule;
 import frc.team236.ticktank.TickTank;
 import frc.team236.ticktank.motionProfile.Profile;
 import frc.team236.ticktank.motionProfile.ProfileFollower;
+import frc.team236.ticktock.MultiTicker;
 
 /**
  *
@@ -17,6 +18,7 @@ public class FollowProfile extends Command {
 	DriveSide leftSide, rightSide;
 	boolean isInverted;
 	TickTank tank;
+	MultiTicker ticker;
 
 	public FollowProfile(TickTank _tank, Profile bothSides, boolean isInverted) {
 		this(_tank, bothSides, bothSides, isInverted);
@@ -41,6 +43,9 @@ public class FollowProfile extends Command {
 			leftFollower = new ProfileFollower(leftProfile, leftSide, leftSide, tank.driveParams, isInverted);
 			rightFollower = new ProfileFollower(rightProfile, rightSide, rightSide, tank.driveParams, isInverted);
 		}
+		ticker = new MultiTicker(1 / 200.0);
+		ticker.addLoopable(leftFollower);
+		ticker.addLoopable(rightFollower);
 	}
 
 	// Called just before this Command runs the first time
@@ -48,6 +53,8 @@ public class FollowProfile extends Command {
 	protected void initialize() {
 		RobotModule.logger.info("Starting FollowProfile Command");
 		tank.zeroEncoders();
+
+		ticker.start();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -68,8 +75,7 @@ public class FollowProfile extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		leftFollower.isEnabled = false;
-		rightFollower.isEnabled = false;
+		ticker.stop();
 		tank.stop();
 		RobotModule.logger.info("Ending FollowProfile Command");
 	}
@@ -78,7 +84,6 @@ public class FollowProfile extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		leftFollower.isEnabled = false;
-		rightFollower.isEnabled = false;
+		end();
 	}
 }

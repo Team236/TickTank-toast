@@ -20,7 +20,6 @@ public class ProfileFollower implements Tickable {
 	// Constants + Gains
 	double kV, kA, kP;
 	double endPosition;
-	public volatile boolean isEnabled;
 	public volatile boolean onTarget;
 	public volatile double error;
 
