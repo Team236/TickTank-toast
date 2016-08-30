@@ -13,7 +13,6 @@ import frc.team236.pid.PIDOutput;
 import frc.team236.pid.PIDParameters;
 import frc.team236.pid.PIDSource;
 import frc.team236.ticktank.commands.DriveWithJoysticks;
-import frc.team236.ticktank.motionProfile.DriveSide;
 import jaci.openrio.toast.lib.registry.Registrar;
 
 public class TickTank extends Subsystem implements PIDSource, PIDOutput {

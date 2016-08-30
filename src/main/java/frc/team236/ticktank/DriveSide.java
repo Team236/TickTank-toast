@@ -1,9 +1,11 @@
-package frc.team236.ticktank.motionProfile;
+package frc.team236.ticktank;
 
 import java.util.ArrayList;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
+import frc.team236.ticktank.motionProfile.ProfileOutput;
+import frc.team236.ticktank.motionProfile.ProfileSource;
 
 /**
  * 
