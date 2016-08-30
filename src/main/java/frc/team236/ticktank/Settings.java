@@ -45,20 +45,20 @@ public class Settings {
 		this.motorCount = _count;
 	}
 
-	public void invertLeftMotors() {
-		leftInv = true;
+	public void invertLeftMotors(boolean inv) {
+		leftInv = inv;
 	}
 
-	public void invertRightMotors() {
-		rightInv = true;
+	public void invertRightMotors(boolean inv) {
+		rightInv = inv;
 	}
 
-	public void invertLeftEncoder() {
-		leftInvEncoder = true;
+	public void invertLeftEncoder(boolean inv) {
+		leftInvEncoder = inv;
 	}
 
-	public void invertRightEncoder() {
-		rightInvEncoder = true;
+	public void invertRightEncoder(boolean inv) {
+		rightInvEncoder = inv;
 	}
 
 	public void setLeftEncoderPort(int a, int b) {
