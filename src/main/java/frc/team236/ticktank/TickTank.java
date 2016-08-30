@@ -38,6 +38,9 @@ public class TickTank extends Subsystem implements PIDSource, PIDOutput {
 		leftMotors = makeMotors(config.motorCount, pwm, config.controllerType);
 		rightMotors = makeMotors(config.motorCount, pwm + config.motorCount, config.controllerType);
 
+		invertMotors(leftMotors, config.leftInv);
+		invertMotors(rightMotors, config.rightInv);
+
 		setLeftStick(config.leftStick);
 		setRightStick(config.rightStick);
 
@@ -118,6 +121,12 @@ public class TickTank extends Subsystem implements PIDSource, PIDOutput {
 		return motors;
 	}
 
+	private void invertMotors(ArrayList<SpeedController> motors, boolean inv) {
+		for (SpeedController motor : motors) {
+			motor.setInverted(inv);
+		}
+	}
+
 	private void setLeftStick(Joystick stick) {
 		this.leftStick = stick;
 	}
@@ -127,20 +136,12 @@ public class TickTank extends Subsystem implements PIDSource, PIDOutput {
 	}
 
 	public void setLeftSpeed(double speed) {
-		if (config.leftInv) {
-			speed *= -1;
-		}
-
 		for (SpeedController motor : leftMotors) {
 			motor.set(speed);
 		}
 	}
 
 	public void setRightSpeed(double speed) {
-		if (config.rightInv) {
-			speed *= -1;
-		}
-
 		for (SpeedController motor : rightMotors) {
 			motor.set(speed);
 		}

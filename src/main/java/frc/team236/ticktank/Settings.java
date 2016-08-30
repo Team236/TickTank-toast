@@ -14,6 +14,7 @@ public class Settings {
 	public int motorCount;
 	public ControllerType controllerType;
 	public boolean leftInv, rightInv;
+	public boolean leftInvEncoder, rightInvEncoder;
 	public int leftEncoderA, leftEncoderB;
 	public int rightEncoderA, rightEncoderB;
 	public boolean hasGyro;
@@ -23,6 +24,8 @@ public class Settings {
 	public Settings() {
 		leftInv = false;
 		rightInv = false;
+		leftInvEncoder = false;
+		rightInvEncoder = false;
 	}
 
 	public void setLeftStick(Joystick stick) {
@@ -48,6 +51,14 @@ public class Settings {
 
 	public void invertRightMotors() {
 		rightInv = true;
+	}
+
+	public void invertLeftEncoder() {
+		leftInvEncoder = true;
+	}
+
+	public void invertRightEncoder() {
+		rightInvEncoder = true;
 	}
 
 	public void setLeftEncoderPort(int a, int b) {
