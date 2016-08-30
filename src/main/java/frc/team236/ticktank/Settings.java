@@ -7,7 +7,7 @@ import frc.team236.ticktank.motionProfile.DriveParameters;
 /**
  * Contains all of the configuration variables for the tank drive. You should
  * create an instance of this class in the main robot init, load it up with
- * objects using the set methods, then pass it on to the Drive module.
+ * objects, then pass it on to the Drive module.
  */
 public class Settings {
 	// Poorly named class
@@ -21,83 +21,16 @@ public class Settings {
 	public boolean hasGyro;
 	public double dpp;
 	public DriveParameters params;
-
 	public PIDParameters turnParams;
 
 	public Settings() {
+		motorCount = 2;
 		leftInv = false;
 		rightInv = false;
 		leftInvEncoder = false;
 		rightInvEncoder = false;
+		controllerType = ControllerType.VICTORSP;
+		hasGyro = false;
 		dpp = 1;
-	}
-
-	public void setLeftStick(Joystick stick) {
-		this.leftStick = stick;
-	}
-
-	public void setRightStick(Joystick stick) {
-		this.rightStick = stick;
-	}
-
-	public void setSticks(Joystick left, Joystick right) {
-		this.setLeftStick(left);
-		this.setRightStick(right);
-	}
-
-	public void setCount(int _count) {
-		this.motorCount = _count;
-	}
-
-	public void invertLeftMotors(boolean inv) {
-		leftInv = inv;
-	}
-
-	public void invertRightMotors(boolean inv) {
-		rightInv = inv;
-	}
-
-	public void invertLeftEncoder(boolean inv) {
-		leftInvEncoder = inv;
-	}
-
-	public void invertRightEncoder(boolean inv) {
-		rightInvEncoder = inv;
-	}
-
-	public void setLeftEncoderPort(int a, int b) {
-		this.leftEncoderA = a;
-		this.leftEncoderB = b;
-	}
-
-	public void setRightEncoderPort(int a, int b) {
-		this.rightEncoderA = a;
-		this.rightEncoderB = b;
-	}
-
-	public void setDistancePerPulse(double _dpp) {
-		this.dpp = _dpp;
-	}
-
-	public void setDriveParams(DriveParameters _d) {
-		this.params = _d;
-	}
-
-	public void addGyro() {
-		this.hasGyro = true;
-	}
-
-	/**
-	 * Set the type of SpeedController being used
-	 *
-	 * @param type
-	 *            The ControllerType of the drive motors
-	 */
-	public void setControllerType(ControllerType type) {
-		this.controllerType = type;
-	}
-
-	public void setTurnPID(PIDParameters _params) {
-		this.turnParams = _params;
 	}
 }

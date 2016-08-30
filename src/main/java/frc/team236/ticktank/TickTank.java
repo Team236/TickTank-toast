@@ -63,28 +63,9 @@ public class TickTank extends Subsystem implements PIDSource, PIDOutput {
 		this.driveParams = config.params;
 	}
 
-	/**
-	 * Generates a TickTank with the default values. DO NOT USE THIS
-	 * CONSTRUCTOR. You should always specify the parameters of the tank drive,
-	 * even if the defaults match your use case. This constructor exists purely
-	 * to avoid errors if you mess up.
-	 */
-	public TickTank() {
-		this(getDefaults());
-	}
-
 	@Override
 	public void initDefaultCommand() {
 		setDefaultCommand(new DriveWithJoysticks(this));
-	}
-
-	private static Settings getDefaults() {
-		Settings defaults = new Settings();
-		defaults.setLeftStick(new Joystick(0));
-		defaults.setRightStick(new Joystick(1));
-		defaults.setCount(2);
-		defaults.setControllerType(ControllerType.VICTOR);
-		return defaults;
 	}
 
 	/**
