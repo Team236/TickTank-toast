@@ -18,6 +18,7 @@ public class Settings {
 	public int leftEncoderA, leftEncoderB;
 	public int rightEncoderA, rightEncoderB;
 	public boolean hasGyro;
+	public double dpp;
 
 	public PIDParameters turnParams;
 
@@ -26,6 +27,7 @@ public class Settings {
 		rightInv = false;
 		leftInvEncoder = false;
 		rightInvEncoder = false;
+		dpp = 1;
 	}
 
 	public void setLeftStick(Joystick stick) {
@@ -69,6 +71,10 @@ public class Settings {
 	public void setRightEncoderPort(int a, int b) {
 		this.rightEncoderA = a;
 		this.rightEncoderB = b;
+	}
+
+	public void setDistancePerPulse(double _dpp) {
+		this.dpp = _dpp;
 	}
 
 	public void addGyro() {
