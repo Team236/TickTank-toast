@@ -162,6 +162,11 @@ public class TickTank extends Subsystem implements PIDSource, PIDOutput {
 		return rightEncoder;
 	}
 
+	public void zeroEncoders() {
+		left.zeroEncoder();
+		right.zeroEncoder();
+	}
+
 	@Override
 	/**
 	 * Set turn speed

@@ -52,4 +52,8 @@ public class DriveSide implements ProfileSource, ProfileOutput {
 	public double getSpeed() {
 		return motors.get(0).get();
 	}
+
+	public void zeroEncoder() {
+		enc.reset();
+	}
 }
