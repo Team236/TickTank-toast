@@ -28,8 +28,8 @@ public class DriveSide implements ProfileSource, ProfileOutput {
 		motors = new ArrayList<SpeedController>();
 
 		// Copy motors from arg list to the private list
-		for (int i = 0; i < _motors.size() - 1; i++) {
-			this.motors.add(_motors.get(i));
+		for (SpeedController motor : _motors) {
+			addMotor(motor);
 		}
 	}
 
@@ -39,8 +39,8 @@ public class DriveSide implements ProfileSource, ProfileOutput {
 
 	@Override
 	public void setSpeed(double speed) {
-		for (int i = 0; i < motors.size(); i++) {
-			motors.get(i).set(speed);
+		for (SpeedController motor : this.motors) {
+			motor.set(speed);
 		}
 	}
 

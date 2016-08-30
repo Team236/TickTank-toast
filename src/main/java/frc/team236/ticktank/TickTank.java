@@ -135,15 +135,11 @@ public class TickTank extends Subsystem implements PIDSource, PIDOutput {
 	}
 
 	public void setLeftSpeed(double speed) {
-		for (SpeedController motor : leftMotors) {
-			motor.set(speed);
-		}
+		left.setSpeed(speed);
 	}
 
 	public void setRightSpeed(double speed) {
-		for (SpeedController motor : rightMotors) {
-			motor.set(speed);
-		}
+		right.setSpeed(speed);
 	}
 
 	public void setSpeeds(double leftSpeed, double rightSpeed) {
