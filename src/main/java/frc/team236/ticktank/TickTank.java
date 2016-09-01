@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SPI;
@@ -24,6 +25,7 @@ public class TickTank extends Subsystem implements PIDSource, PIDOutput {
 	public Settings config;
 	public AHRS navx;
 	public PIDParameters turnParams;
+	private DoubleSolenoid sol;
 
 	public DriveParameters driveParams;
 
@@ -61,6 +63,8 @@ public class TickTank extends Subsystem implements PIDSource, PIDOutput {
 
 		this.turnParams = config.turnParams;
 		this.driveParams = config.params;
+
+		this.sol = new DoubleSolenoid(config.solForward, config.solReverse);
 	}
 
 	@Override
@@ -150,6 +154,28 @@ public class TickTank extends Subsystem implements PIDSource, PIDOutput {
 	public void zeroEncoders() {
 		left.zeroEncoder();
 		right.zeroEncoder();
+	}
+
+	private void setSol(int direction) {
+		switch (direction) {
+		case 1:
+			sol.set(DoubleSolenoid.Value.kForward);
+			break;
+		case -1:
+			sol.set(DoubleSolenoid.Value.kReverse);
+			break;
+		default:
+			sol.set(DoubleSolenoid.Value.kOff);
+			break;
+		}
+	}
+
+	public void shiftUp() {
+		setSol(1);
+	}
+
+	public void shiftDown() {
+		setSol(-1);
 	}
 
 	@Override
