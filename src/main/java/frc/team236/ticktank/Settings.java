@@ -22,6 +22,7 @@ public class Settings {
 	public double dpp;
 	public DriveParameters params;
 	public PIDParameters turnParams;
+	public int solForward, solReverse;
 
 	public Settings() {
 		motorCount = 2;
