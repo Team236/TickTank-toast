@@ -33,5 +33,11 @@ public class Settings {
 		controllerType = ControllerType.VICTORSP;
 		hasGyro = false;
 		dpp = 1;
+
+		// Default port assignments
+		leftEncoderA = 0;
+		leftEncoderB = 1;
+		rightEncoderA = 2;
+		rightEncoderB = 3;
 	}
 }
