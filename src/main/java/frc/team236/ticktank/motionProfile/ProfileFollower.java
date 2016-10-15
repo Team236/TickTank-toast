@@ -1,6 +1,6 @@
 package frc.team236.ticktank.motionProfile;
 
-import frc.team236.ticktock.Tickable;
+import frc.team236.ticktock.lib.Tickable;
 
 /**
  * 
