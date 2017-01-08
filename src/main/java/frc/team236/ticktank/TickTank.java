@@ -48,11 +48,13 @@ public class TickTank extends Subsystem implements PIDSource, PIDOutput {
 		setLeftStick(config.leftStick);
 		setRightStick(config.rightStick);
 
-		leftEncoder = new Encoder(config.leftEncoderA, config.leftEncoderB);
-		rightEncoder = new Encoder(config.rightEncoderA, config.rightEncoderB);
+		if (config.hasEncoders) {
+			leftEncoder = new Encoder(config.leftEncoderA, config.leftEncoderB);
+			rightEncoder = new Encoder(config.rightEncoderA, config.rightEncoderB);
 
-		leftEncoder.setDistancePerPulse(config.dpp);
-		rightEncoder.setDistancePerPulse(config.dpp);
+			leftEncoder.setDistancePerPulse(config.dpp);
+			rightEncoder.setDistancePerPulse(config.dpp);
+		}
 
 		if (config.hasGyro) {
 			navx = new AHRS(SPI.Port.kMXP);

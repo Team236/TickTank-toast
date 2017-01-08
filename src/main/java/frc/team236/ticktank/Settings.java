@@ -23,6 +23,7 @@ public class Settings {
 	public DriveParameters params;
 	public PIDParameters turnParams;
 	public int solForward, solReverse;
+	public boolean hasEncoders;
 
 	public Settings() {
 		motorCount = 2;
@@ -35,6 +36,7 @@ public class Settings {
 		dpp = 1;
 
 		// Default port assignments
+		hasEncoders = true;
 		leftEncoderA = 0;
 		leftEncoderB = 1;
 		rightEncoderA = 2;
