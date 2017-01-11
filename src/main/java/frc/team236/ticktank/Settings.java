@@ -24,6 +24,7 @@ public class Settings {
 	public PIDParameters turnParams;
 	public int solForward, solReverse;
 	public boolean hasEncoders;
+	public boolean hasGears;
 
 	public Settings() {
 		motorCount = 2;
@@ -33,6 +34,7 @@ public class Settings {
 		rightInvEncoder = false;
 		controllerType = ControllerType.VICTORSP;
 		hasGyro = false;
+		hasGears = false;
 		dpp = 1;
 
 		// Default port assignments

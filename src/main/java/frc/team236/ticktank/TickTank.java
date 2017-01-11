@@ -66,7 +66,9 @@ public class TickTank extends Subsystem implements PIDSource, PIDOutput {
 		this.turnParams = config.turnParams;
 		this.driveParams = config.params;
 
-		this.sol = new DoubleSolenoid(config.solForward, config.solReverse);
+		if (config.hasGears) {
+			this.sol = new DoubleSolenoid(config.solForward, config.solReverse);
+		}
 	}
 
 	@Override
